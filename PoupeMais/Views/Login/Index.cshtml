@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "_LayoutLogin";
+}
+<div class="container">    
+    <div class="card card-login card-container">
+        @*<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>*@
+        <h1 class="text">Poupe+</h1>
+        <h4 class="text">Controle seus gastos de forma simples e rápida</h4>
+        <form class="form-signin" method="post" asp-action="Login">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
+            <input type="text" id="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+            <button class="btn btn-sm btn-light btn-signin" type="submit">Login</button>
+        </form><!-- /form -->
+        <a href="@Url.Action("Index", "Cadastro")" class="create-account text-center">
+            Criar conta
+        </a>
+    </div><!-- /card-container -->
+</div><!-- /container -->

@@ -1,0 +1,194 @@
+﻿@model PoupeMais.ViewModel.ContasViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+<div class="content">
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <h1 class="pt-5 texthome">Cadastre seus gastos</h1>
+        </div>
+    </div>
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <button type="button" id="btn-adicionar" class="btn btn-sm btn-light btn-signin" data-toggle="modal" data-target="#modalAdicionar"> + Adicionar nova</button>
+        </div>
+        <div class="modal fade rounded" id="modalAdicionar" tabindex="-1" role="dialog" aria-labelledby="modalAdicionar" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background-color:#FFF4F4;">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="modalAdicionar">Adicionar novo gasto</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-signin" method="post" asp-action="AdicionarGasto">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <div class="form-group">
+                                            <label for="nome">Nome:</label>
+                                            <input type="text" id="nome" name="nome" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <div class="form-group">
+                                            <label for="tipo">Tipo:</label><br />
+                                            <select name="tipo" id="tipo">
+                                                @foreach (var tipo in Model.TiposGasto)
+                                                {
+                                                    <option value="@tipo.Id">@tipo.Descricao</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-auto">
+                                        <div class="form-group">
+                                            <label for="valor">Valor:</label>
+                                            <input id="valor" name="valor" class="form-control" type="number" step="any" value="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <div class="form-group">
+                                            <label for="recorrencia">Recorrência:</label><br />
+                                            <select name="recorrencia" id="recorrencia">
+                                                @foreach (var tipo in Model.Recorrencias)
+                                                {
+                                                    <option value="@tipo.Id">@tipo.Descricao</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <div class="form-group">
+                                            <label for="dtvencimento">Data de vencimento:</label>
+                                            <input type="date" id="dtvencimento" name="dtvencimento" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-light btn-signin" type="submit">Adicionar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th hidden scope="col"></th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Dt de Vencimento</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var gasto in Model.Gastos)
+                        {
+                            <tr>
+                                <th hidden scope="row"></th>
+                                <td>@gasto.Nome</td>
+                                <td>@gasto.Tipo</td>
+                                <td>@gasto.DtVencimento</td>
+                                <td>R$@gasto.Valor</td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar-@gasto.Id"><i class="bi bi-pen"></i></button></td>
+                                <td><button type="button" class="btn btn-primary" onclick="window.location.href = '@Url.Action("DeletarGasto", "Contas", new { id=gasto.Id })';"><i class="bi bi-trash"></i></button></td>
+                            </tr>
+                            <div class="modal fade" id="modalEditar-@gasto.Id" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content" style="background-color:#FFF4F4;">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title" id="modalAdicionar">Editar gasto</h1>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-signin" method="post" asp-action="EditarGasto">
+                                                <input type="hidden" id="id" name="id" class="form-control" value="@gasto.Id">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-auto">
+                                                            <div class="form-group">
+                                                                <label for="nome">Nome:</label>
+                                                                <input type="text" id="nome" name="nome" class="form-control" value="@gasto.Nome">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-auto">
+                                                            <div class="form-group">
+                                                                <label for="tipo">Tipo:</label><br />
+                                                                <select name="tipo" id="tipo">                                                                   
+                                                                    @foreach (var tipo in Model.TiposGasto)
+                                                                    {                                                                       
+                                                                        if (tipo.Id == gasto.TipoId)
+                                                                        {
+                                                                            <option value="@tipo.Id" selected>@tipo.Descricao</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@tipo.Id" >@tipo.Descricao</option>
+
+                                                                        }
+                                                                                                                                            }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-auto">
+                                                            <div class="form-group">
+                                                                <label for="valor">Valor:</label>
+                                                                <input id="valor" name="valor" class="form-control" type="text" value="@gasto.Valor">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-auto">
+                                                            <div class="form-group">
+                                                                <label for="recorrencia">Recorrência:</label><br />
+                                                                <select name="recorrencia" id="recorrencia" >
+                                                                    @foreach (var tipo in Model.Recorrencias)
+                                                                    {
+                                                                        if (tipo.Id == gasto.RecorrenciaId)
+                                                                        {
+                                                                            <option value="@tipo.Id" selected>@tipo.Descricao</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@tipo.Id">@tipo.Descricao</option>
+                                                                        }
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-auto">
+                                                            <div class="form-group">
+                                                                <label for="dtvencimento">Data de vencimento:</label>
+                                                                <input type="date" id="dtvencimento" name="dtvencimento" class="form-control" value="@gasto.DtVencimento.ToString("yyyy-MM-dd")">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-sm btn-light btn-signin" type="submit">Atualizar</button>
+                                                </div>                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>

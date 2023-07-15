@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Cadastro";
+    Layout = "_LayoutLogin";
+}
+<div class="container">
+    <div class="card card-login card-container">
+        <h4 class="text">
+            Comece a fazer seu dinheiro render mais
+        </h4>
+        <form class="form-signin" method="post" asp-action="Cadastro">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" required autofocus>
+            <input type="text" id="email" name="email" class="form-control" placeholder="E-mail" required>
+            <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+            <button class="btn btn-sm btn-light btn-signin" type="submit">Cadastrar</button>
+        </form><!-- /form -->
+        <a href="@Url.Action("Index", "Login")" class="create-account text-center">
+            Voltar para login
+        </a>
+    </div><!-- /card-container -->
+</div><!-- /container -->

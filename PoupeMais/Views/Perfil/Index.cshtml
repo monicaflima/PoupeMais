@@ -1,0 +1,37 @@
+﻿@model PoupeMais.ViewModel.PerfilViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+<div class="content">
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <h1 class="pt-5 texthome"> Cadastro usuário</h1>
+        </div>
+    </div>
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <form class="form-signin" method="post" asp-action="Atualizar">
+                <div class="row">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" class="form-control" value="@Model.Nome">
+                </div>
+                <div class="row">
+                    <label for="nome">Email:</label>
+                    <input type="text" id="email" name="email" class="form-control" value="@Model.Email">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="nome">Senha:</label>
+                        <input type="password" id="senha" name="senha" class="form-control" value="@Model.Senha">
+                    </div>
+                    <div class="col">
+                        <label for="nome">Renda fixa:</label>
+                        <input type="text" id="senha" name="senha" class="form-control"  value="@Model.RendaFixa">
+                    </div>
+                </div>                
+                <button class="btn btn-sm btn-light btn-signin" type="submit">Atualizar</button>
+            </form><!-- /form -->
+        </div>
+    </div>
+</div>

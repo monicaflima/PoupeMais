@@ -1,0 +1,46 @@
+﻿@model PoupeMais.ViewModel.HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+<div class="content">
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <h1 class="pt-5 texthome" id="saudacao"></h1>
+            <script>
+                var saudacao = document.getElementById("saudacao");
+                var nome = '@(Model.Nome)';
+                var horaAtual = new Date().getHours();
+                var mensagem;
+
+                if (horaAtual >= 6 && horaAtual < 12) {
+                    mensagem = "Bom dia, ".concat(nome);
+                } else if (horaAtual >= 12 && horaAtual < 18) {
+                    mensagem = "Boa tarde, ".concat(nome);
+                } else {
+                    mensagem = "Boa noite, ".concat(nome);
+                }
+
+                saudacao.innerHTML = mensagem;
+            </script>
+        </div>
+    </div>
+    <div class="row mx-md-n5">
+        <div class="col py-3 px-md-5">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h5 class="card-title text">Gastos mensais</h5>
+                    <p class="card-text text">em breve</p>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3 px-md-5">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+                <div class="card-body">
+                    <h5 class="card-title text">Lembretes</h5>
+                    <p class="card-text text">em breve</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
