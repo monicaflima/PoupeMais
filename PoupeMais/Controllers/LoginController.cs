@@ -5,15 +5,13 @@ namespace PoupeMais.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
         private readonly UsuarioService _usuarioService;
         private readonly ContasService _gastosService;
         private readonly CriptografiaService _criptografiaService;
 
-        public LoginController(UsuarioService usuarioService, ILogger<LoginController> logger, CriptografiaService criptografiaService, ContasService gastosService)
+        public LoginController(UsuarioService usuarioService, CriptografiaService criptografiaService, ContasService gastosService)
         {
             _usuarioService = usuarioService;
-            _logger = logger;
             _criptografiaService = criptografiaService;
             _gastosService = gastosService;
         }

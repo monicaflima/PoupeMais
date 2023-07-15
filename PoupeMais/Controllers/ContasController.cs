@@ -5,16 +5,14 @@ using PoupeMais.Services;
 namespace PoupeMais.Controllers
 {
     public class ContasController : Controller
-    {
-        private readonly ILogger<LoginController> _logger;
+    {        
         private readonly UsuarioService _usuarioService;
         private readonly ContasService _contasService;
         private readonly CriptografiaService _criptografiaService;
 
-        public ContasController(UsuarioService usuarioService, ILogger<LoginController> logger, CriptografiaService criptografiaService, ContasService contasService)
+        public ContasController(UsuarioService usuarioService,  CriptografiaService criptografiaService, ContasService contasService)
         {
             _usuarioService = usuarioService;
-            _logger = logger;
             _criptografiaService = criptografiaService;
             _contasService = contasService;
         }

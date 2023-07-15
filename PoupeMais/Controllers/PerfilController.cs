@@ -8,14 +8,12 @@ namespace PoupeMais.Controllers
 {
     public class PerfilController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
         private readonly UsuarioService _usuarioService;
         private readonly CriptografiaService _criptografiaService;
 
-        public PerfilController(UsuarioService usuarioService, ILogger<LoginController> logger, CriptografiaService criptografiaService)
+        public PerfilController(UsuarioService usuarioService, CriptografiaService criptografiaService)
         {
             _usuarioService = usuarioService;
-            _logger = logger;
             _criptografiaService = criptografiaService;
         }
 

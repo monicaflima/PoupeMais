@@ -5,15 +5,13 @@ using PoupeMais.Services;
 namespace PoupeMais.Controllers
 {
     public class CadastroController : Controller
-    {
-        private readonly ILogger<LoginController> _logger;
+    {        
         private readonly UsuarioService _usuarioService;
         private readonly CriptografiaService _criptografiaService;
 
-        public CadastroController(UsuarioService usuarioService, ILogger<LoginController> logger, CriptografiaService criptografiaService)
+        public CadastroController(UsuarioService usuarioService, CriptografiaService criptografiaService)
         {
             _usuarioService = usuarioService;
-            _logger = logger;
             _criptografiaService = criptografiaService;
         }
 
