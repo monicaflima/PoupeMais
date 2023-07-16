@@ -56,7 +56,7 @@ namespace PoupeMais.Controllers
                     Descricao = nome,
                     IdRecorrencia = recorrencia,
                     IdTipoGasto = tipo,
-                    DtVencimento = DateOnly.FromDateTime(dtvencimento),
+                    DtVencimento = dtvencimento,
                     Valor = decimal.Parse(valor.Replace(".", ",")),
                     IdUsuario = (int)HttpContext.Session.GetInt32("UserId")
                 };
@@ -76,7 +76,7 @@ namespace PoupeMais.Controllers
                 Descricao = nome,
                 IdRecorrencia = recorrencia,
                 IdTipoGasto = tipo,
-                DtVencimento = DateOnly.FromDateTime(dtvencimento),
+                DtVencimento = dtvencimento,
                 Valor = decimal.Parse(valor.Replace(".", ",")),
                 IdUsuario = (int)HttpContext.Session.GetInt32("UserId")
             };

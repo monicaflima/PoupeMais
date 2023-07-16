@@ -14,7 +14,7 @@
         public int TipoId { get; set; }
         public int RecorrenciaId { get; set; }
         public string Tipo { get; set; }
-        public DateOnly DtVencimento { get; set; }
+        public DateTime DtVencimento { get; set; }
         public decimal Valor { get; set; }
     }
 }

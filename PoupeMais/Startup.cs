@@ -16,7 +16,7 @@ namespace PoupeMais
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("SQLiteConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
 
             services.AddSession(options =>
             {

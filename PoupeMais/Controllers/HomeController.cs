@@ -33,7 +33,7 @@ namespace PoupeMais.Controllers
             var gastosUsuario = _contasService.ListarGastosPorUsuario(id);
             foreach (var gastos in gastosUsuario)
             {
-                if (gastos.DtVencimento < DateOnly.FromDateTime(DateTime.Now))
+                if (gastos.DtVencimento < DateTime.Now)
                 {
                     var recorrencia = _contasService.ListarRecorrencoaPorId(gastos.IdRecorrencia);
                     switch (recorrencia)

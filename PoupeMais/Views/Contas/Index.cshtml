@@ -99,7 +99,7 @@
                                 <th hidden scope="row"></th>
                                 <td>@gasto.Nome</td>
                                 <td>@gasto.Tipo</td>
-                                <td>@gasto.DtVencimento</td>
+                                <td>@gasto.DtVencimento.ToString("dd/MM/yyyy")</td>
                                 <td>R$@gasto.Valor</td>
                                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar-@gasto.Id"><i class="bi bi-pen"></i></button></td>
                                 <td><button type="button" class="btn btn-primary" onclick="window.location.href = '@Url.Action("DeletarGasto", "Contas", new { id=gasto.Id })';"><i class="bi bi-trash"></i></button></td>
